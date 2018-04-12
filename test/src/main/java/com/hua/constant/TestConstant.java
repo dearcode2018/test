@@ -1,0 +1,16 @@
+/**
+ * TestConstant.java
+ * @author  qye.zheng
+ * 	version 1.0
+ */
+package com.hua.constant;
+
+/**
+ * TestConstant
+ * 描述: 测试 - 常量 
+ * @author  qye.zheng
+ */
+public interface TestConstant
+{
+
+}

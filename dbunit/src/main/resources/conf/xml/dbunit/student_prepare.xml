@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<!-- <student oid="" name="" gender="" credit="" birthday="" address="" /> -->
+	<student oid="1" name="王菲" gender="2" credit="12.5" birthday="1980-02-23" address="浙江省杭州市东风路23号" />
+	<student oid="2" name="张国焘" gender="1" credit="34.4" birthday="1979-01-29" address="浙江省宁波市长龙路135号" />
+	<student oid="3" name="温峥嵘" gender="2" credit="11.0" birthday="1983-10-01" address="上海市浦东新区南埔路93号" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</dataset>
