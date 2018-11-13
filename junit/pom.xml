@@ -23,12 +23,6 @@
 			<artifactId>test</artifactId>
 			<version>${test.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-		</dependency>
 		
 	</dependencies>
 
