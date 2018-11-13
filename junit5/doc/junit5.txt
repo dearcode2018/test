@@ -1,0 +1,31 @@
+JUnit5
+
+1.组成
+JUnit Platform 基于JVM运行测试的基础框架
+JUnit Jupiter 提供基于Jupiter的测试
+JUnit Vintage(古老的，主要是支持junit3/4) 兼容支持JUnit3/4的测试
+ 
+命令行
+
+
+maven运行
+
+
+IDE运行
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
