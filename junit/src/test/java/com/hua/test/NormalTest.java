@@ -5,7 +5,7 @@
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.junit.normal;
+package com.hua.test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

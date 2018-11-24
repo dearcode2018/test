@@ -1,40 +1,84 @@
 /**
  * 描述: 
- * NormalTest.java
+ * Junit5Test.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.junit.normal;
+package com.hua.test.junit;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+// 静态导入
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 
+import com.hua.Remote;
 import com.hua.test.BaseTest;
+
+
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * NormalTest
+ * Junit5Test
  */
-public final class NormalTest extends BaseTest {
+@DisplayName("测试类名称")
+@Tag("测试类标签")
+@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
+public class Junit5Test extends BaseTest {
+
+	
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	@Test
+	public void testJunit5() {
+		try {
+			System.out.println("Junit5Test.testJunit5()");
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	@Test
+	public void test() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
+	
 	/**
 	 * 
 	 * 描述: 普通测试方法
@@ -43,6 +87,9 @@ public final class NormalTest extends BaseTest {
 	 * 
 	 */
 	@Test
+	@DisplayName("测试方法名称")
+	@Tag("测试方法标签")
+	@Tags({@Tag("测试方法标签1"), @Tag("测试方法标签2")})
 	public void testNormal() {
 		System.out.println("testNormal()");
 	}
@@ -54,7 +101,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@Test(expected=NullPointerException.class)
+	@Test
 	@SuppressWarnings("all")
 	public void testException() {
 		String str = null;
@@ -68,7 +115,8 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@Test(timeout=3000)
+	@Remote
+	@Test
 	public void testTimeOut() {
 		System.out.println("testTimeOut()");
 	}
@@ -79,7 +127,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@Ignore("暂时忽略的方法")
+	@Disabled
 	@Test
 	public void ignoreMethod() {
 		System.out.println("ignoreMethod()");
@@ -91,7 +139,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@BeforeClass
+	@BeforeAll
 	public static void beforeClass() {
 		System.out.println("beforeClass()");
 	}
@@ -102,7 +150,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@AfterClass
+	@AfterAll
 	public static void afterClass() {
 		System.out.println("afterClass()");
 	}
@@ -113,7 +161,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@Before
+	@BeforeEach
 	public void beforeMethod() {
 		System.out.println("beforeMethod()");
 	}
@@ -124,7 +172,7 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@After
+	@AfterEach
 	public void afterMethod() {
 		System.out.println("afterMethod()");
 	}
@@ -135,8 +183,8 @@ public final class NormalTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@Ignore("解决ide静态导入消除问题 ")
-	private void test() {
+	@Disabled("解决ide静态导入消除问题 ")
+	private void noUse() {
 		String expected = null;
 		String actual = null;
 		Object[] expecteds = null;
@@ -149,25 +197,22 @@ public final class NormalTest extends BaseTest {
 		assertNotEquals(message, expected, actual);
 		
 		assertArrayEquals(expecteds, actuals);
-		assertArrayEquals(message, expecteds, actuals);
+		assertArrayEquals(expecteds, actuals, message);
 		
 		assertFalse(true);
 		assertTrue(true);
-		assertFalse(message, true);
-		assertTrue(message, true);
+		assertFalse(true, message);
+		assertTrue(true, message);
 		
 		assertSame(expecteds, actuals);
 		assertNotSame(expecteds, actuals);
-		assertSame(message, expecteds, actuals);
-		assertNotSame(message, expecteds, actuals);
+		assertSame(expecteds, actuals, message);
+		assertNotSame(expecteds, actuals, message);
 		
 		assertNull(actuals);
 		assertNotNull(actuals);
-		assertNull(message, actuals);
-		assertNotNull(message, actuals);
-		
-		assertThat(null, null);
-		assertThat(null, null, null);
+		assertNull(actuals, message);
+		assertNotNull(actuals, message);
 		
 		fail();
 		fail("Not yet implemented");
