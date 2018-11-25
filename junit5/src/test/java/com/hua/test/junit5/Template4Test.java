@@ -1,65 +1,62 @@
 /**
  * 描述: 
- * Junit5Test.java
+ * Template4Test.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.junit;
+package com.hua.test.junit5;
 
-// 静态导入
+//静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.hua.Remote;
+import com.hua.provider.MyTestTemplateInvocationContextProvider;
 import com.hua.test.BaseTest;
-
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * Junit5Test
+ * Template4Test
  */
-@DisplayName("测试类名称")
-@Tag("测试类标签")
-@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public class Junit5Test extends BaseTest {
+//@DisplayName("测试类名称")
+//@Tag("测试类标签")
+//@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
+public final class Template4Test extends BaseTest {
 
-	
 	
 	/**
 	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
+	 * @description 
+	 * @author qianye.zheng
 	 */
-	@Test
-	public void testJunit5() {
+	@TestTemplate
+	@ExtendWith(MyTestTemplateInvocationContextProvider.class)
+	public void templateTest() {
 		try {
-			System.out.println("Junit5Test.testJunit5()");
+			System.out.println("cc");
 			
 		} catch (Exception e) {
-			log.error("test =====> ", e);
+			log.error("templateTest =====> ", e);
 		}
 	}
 	
@@ -69,6 +66,7 @@ public class Junit5Test extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
+	//@DisplayName("test")
 	@Test
 	public void test() {
 		try {
@@ -81,78 +79,70 @@ public class Junit5Test extends BaseTest {
 	
 	/**
 	 * 
-	 * 描述: 普通测试方法
-	 ,@Test注解 不带参数
+	 * 描述: 
 	 * @author qye.zheng
 	 * 
 	 */
+	@DisplayName("testTemp")
 	@Test
-	@DisplayName("测试方法名称")
-	@Tag("测试方法标签")
-	@Tags({@Tag("测试方法标签1"), @Tag("测试方法标签2")})
-	public void testNormal() {
-		System.out.println("testNormal()");
+	public void testTemp() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("testTemp=====> ", e);
+		}
 	}
 	
 	/**
 	 * 
-	 * 描述: 期望发生异常-测试方法
-	 ,@Test注解 异常
+	 * 描述: 
 	 * @author qye.zheng
 	 * 
 	 */
+	@DisplayName("testCommon")
 	@Test
-	@SuppressWarnings("all")
-	public void testException() {
-		String str = null;
-		System.out.println(str.length());
+	public void testCommon() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("testCommon =====> ", e);
+		}
 	}
 	
 	/**
 	 * 
-	 * 描述: 超时测试方法
-	 ,@Test注解 指定运行时间 (单位 : 毫秒)
+	 * 描述: 
 	 * @author qye.zheng
 	 * 
 	 */
-	@Remote
+	@DisplayName("testSimple")
 	@Test
-	public void testTimeOut() {
-		System.out.println("testTimeOut()");
+	public void testSimple() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("testSimple =====> ", e);
+		}
 	}
 	
 	/**
 	 * 
-	 * 描述: 测试忽略的方法
+	 * 描述: 
 	 * @author qye.zheng
 	 * 
 	 */
-	@Disabled
+	@DisplayName("testBase")
 	@Test
-	public void ignoreMethod() {
-		System.out.println("ignoreMethod()");
-	}
-	
-	/**
-	 * 
-	 * 描述: [所有测试]开始之前运行
-	 * @author qye.zheng
-	 * 
-	 */
-	@BeforeAll
-	public static void beforeClass() {
-		System.out.println("beforeClass()");
-	}
-	
-	/**
-	 * 
-	 * 描述: [所有测试]结束之后运行
-	 * @author qye.zheng
-	 * 
-	 */
-	@AfterAll
-	public static void afterClass() {
-		System.out.println("afterClass()");
+	public void testBase() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("testBase =====> ", e);
+		}
 	}
 	
 	/**
@@ -161,6 +151,8 @@ public class Junit5Test extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
+	@DisplayName("beforeMethod")
+	@Tag(" [每个测试-方法]结束之后运行")
 	@BeforeEach
 	public void beforeMethod() {
 		System.out.println("beforeMethod()");
@@ -172,9 +164,24 @@ public class Junit5Test extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
+	@DisplayName("afterMethod")
+	@Tag(" [每个测试-方法]结束之后运行")
 	@AfterEach
 	public void afterMethod() {
 		System.out.println("afterMethod()");
+	}
+	
+	/**
+	 * 
+	 * 描述: 测试忽略的方法
+	 * @author qye.zheng
+	 * 
+	 */
+	@Disabled
+	@DisplayName("ignoreMethod")
+	@Test
+	public void ignoreMethod() {
+		System.out.println("ignoreMethod()");
 	}
 	
 	/**
@@ -183,6 +190,7 @@ public class Junit5Test extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
+	@DisplayName("noUse")
 	@Disabled("解决ide静态导入消除问题 ")
 	private void noUse() {
 		String expected = null;
@@ -218,4 +226,5 @@ public class Junit5Test extends BaseTest {
 		fail("Not yet implemented");
 		
 	}
+
 }
