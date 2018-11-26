@@ -17,7 +17,8 @@
 		<module>dbunit2</module>		
 		<module>dbutils</module>		
 		<module>junit</module>	
-		<module>junit-spring</module>		
+		<module>junit-spring</module>	
+		<module>junit5-spring</module>	
 		<module>junit4</module>		
 		<module>junit5</module>
 		<module>test</module>		
