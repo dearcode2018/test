@@ -1,6 +1,6 @@
 /**
  * 描述: 
- * Template4Test.java
+ * TestLifeCycle.java
  * 
  * @author qye.zheng
  *  version 1.0
@@ -18,6 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,10 +31,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.hua.provider.MyTestTemplateInvocationContextProvider;
+import com.hua.callback.MyAfterAllCallback;
+import com.hua.callback.MyAfterEachCallback;
+import com.hua.callback.MyAfterTestExecutionCallback;
+import com.hua.callback.MyBeforeAllCallback;
+import com.hua.callback.MyBeforeEachCallback;
+import com.hua.callback.MyBeforeTestExecutionCallback;
 import com.hua.test.BaseTest;
 
 
@@ -36,27 +46,46 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * Template4Test
+ * TestLifeCycle
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class Template4Test extends BaseTest {
+@ExtendWith({MyAfterAllCallback.class, MyAfterEachCallback.class, MyAfterTestExecutionCallback.class, 
+	MyBeforeAllCallback.class, MyBeforeEachCallback.class, MyBeforeTestExecutionCallback.class})
+public final class TestLifeCycle extends BaseTest {
 
+	/*
+	 BeforeAllCallback 1
+		@BeforeAll  2
+			BeforeEachCallback 3
+				@BeforeEach 4 
+					BeforeTestExecutionCallback 5
+						@Test 6
+						TestExecutionExceptionHandler 7
+					AfterTestExecutionCallback 8
+				@AfterEach 9
+			AfterEachCallback 10
+		@AfterAll 11
+	AfterAllCallback 12
+	 */
+	
+	
 	
 	/**
 	 * 
-	 * @description 
-	 * @author qianye.zheng
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
 	 */
-	@TestTemplate
-	@ExtendWith(MyTestTemplateInvocationContextProvider.class)
-	public void templateTest() {
+	//@DisplayName("test")
+	@Test
+	public void testLifeCycle() {
 		try {
-			System.out.println("cc");
+			System.out.println("TestLifeCycle.testLifeCycle()");
 			
 		} catch (Exception e) {
-			log.error("templateTest =====> ", e);
+			log.error("testLifeCycle =====> ", e);
 		}
 	}
 	
@@ -225,6 +254,11 @@ public final class Template4Test extends BaseTest {
 		fail();
 		fail("Not yet implemented");
 		
+		dynamicTest(null, null);
+		
+		assumeFalse(false);
+		assumeTrue(true);
+		assumingThat(true, null);
 	}
 
 }

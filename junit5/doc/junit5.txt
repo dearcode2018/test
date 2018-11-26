@@ -15,8 +15,19 @@ IDE运行
 
 
 
-
-
+执行顺序
+BeforeAllCallback 1
+	@BeforeAll  2
+		BeforeEachCallback 3
+			@BeforeEach 4 
+				BeforeTestExecutionCallback 5
+					@Test 6
+					TestExecutionExceptionHandler 7
+				AfterTestExecutionCallback 8
+			@AfterEach 9
+		AfterEachCallback 10
+	@AfterAll 11
+AfterAllCallback 12
 
 
 

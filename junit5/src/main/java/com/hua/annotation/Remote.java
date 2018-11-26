@@ -4,7 +4,7 @@
   * @version 1.0
   * @author qianye.zheng
  */
-package com.hua;
+package com.hua.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

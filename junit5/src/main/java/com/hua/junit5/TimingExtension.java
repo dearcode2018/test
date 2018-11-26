@@ -37,6 +37,7 @@ public class TimingExtension
 	@Override
 	public void afterTestExecution(ExtensionContext context) throws Exception
 	{
+		System.out.println("TimingExtension.afterTestExecution()");
 		Method method = context.getRequiredTestMethod();
 		long startTime = getStore(context).remove(START_TIME, long.class);
 		long duration = System.currentTimeMillis() - startTime;
@@ -52,6 +53,7 @@ public class TimingExtension
 	@Override
 	public void beforeTestExecution(ExtensionContext context) throws Exception
 	{
+		System.out.println("TimingExtension.beforeTestExecution()");
 		getStore(context).put(START_TIME, System.currentTimeMillis());
 	}
 	

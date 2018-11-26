@@ -26,6 +26,13 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 public class MyTestTemplateInvocationContextProvider
 		implements TestTemplateInvocationContextProvider
 {
+	
+	/**
+	 * 测试模板调用上下文提供者
+	 * 
+	 * 创建多少一个上下文，一个测试用例就执行多少次，对应不同的上下文
+	 * 
+	 */
 
 	/**
 	 * @description 
