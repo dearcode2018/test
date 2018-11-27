@@ -31,7 +31,7 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
-
+import org.junit.jupiter.api.function.Executable;
 
 import com.hua.test.BaseTest;
 
@@ -55,7 +55,7 @@ public final class FactoryTest extends BaseTest {
 	 * 
 	 */
 	//@DisplayName("test")
-	@TestFactory
+	@Test
 	public void testFactory() {
 		try {
 			
@@ -75,10 +75,22 @@ public final class FactoryTest extends BaseTest {
 	Collection<DynamicTest> dynamicTestsFromCollection() {
 		System.out.println("FactoryTest.dynamicTestsFromCollection()");
 		return Arrays.asList( dynamicTest("1st dynamic test", () -> assertTrue(true)),
-				dynamicTest("2nd dynamic test", () -> assertEquals(4, 2 * 2)) ); 
+				dynamicTest("2nd dynamic test", () -> assertEquals(4, 2 * 2)), dynamicTest("ddd", () -> new MyExecutable())); 
 		}
 
-	
+	class MyExecutable implements Executable
+	{
+		/**
+		 * @description 
+		 * @throws Throwable
+		 * @author qianye.zheng
+		 */
+		@Override
+		public void execute() throws Throwable
+		{
+			System.out.println("FactoryTest.MyExecutable.execute()");
+		}
+	}
 	
 	/**
 	 * 

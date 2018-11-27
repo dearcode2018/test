@@ -42,7 +42,7 @@ import com.hua.test.BaseTest;
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
 @ExtendWith(RandomParameterExtension.class)
-public final class ExtendWithTest extends BaseTest {
+public final class ParameterResolveTest extends BaseTest {
 
 	/**
 	 * 

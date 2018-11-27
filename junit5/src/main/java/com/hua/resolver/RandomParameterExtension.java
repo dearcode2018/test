@@ -1,5 +1,5 @@
 /**
-  * @filename RandomParamterExtension.java
+  * @filename RandomParameterExtension.java
   * @description 
   * @version 1.0
   * @author qianye.zheng
@@ -19,11 +19,11 @@ import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
 /**
- * @type RandomParamterExtension
+ * @type RandomParameterExtension
  * @description 
  * @author qianye.zheng
  */
-public class RandomParamterExtension implements ParameterResolver
+public class RandomParameterExtension implements ParameterResolver
 {
 
 	/**
