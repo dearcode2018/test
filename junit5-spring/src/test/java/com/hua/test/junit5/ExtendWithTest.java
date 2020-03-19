@@ -105,7 +105,7 @@ public final class ExtendWithTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			
+			log.info("a = ");
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);

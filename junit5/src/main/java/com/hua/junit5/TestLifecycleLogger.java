@@ -6,7 +6,8 @@
  */
 package com.hua.junit5;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,7 +25,7 @@ import org.junit.jupiter.api.TestInstance;
 public interface TestLifecycleLogger
 {
 	
-	static final Logger logger = Logger.getLogger(TestLifecycleLogger.class.getName());
+	public static final Logger logger = LogManager.getLogger(TestLifecycleLogger.class.getName());
 	
 	/**
 	 * 

@@ -11,6 +11,7 @@
 	<modules>
 		<!-- 模板 -->
 		<module>test-template</module>		
+		<module>appium-client</module>
 		<module>ant-unit</module>		
 		<module>dbunit</module>		
 		<module>dbunit-spring</module>		
