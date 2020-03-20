@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +44,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -94,10 +94,10 @@ public final class AppiumClientTest extends BaseTest {
 			AppiumDriverLocalService.buildService(builder);
 			// 
 			//AppiumDriverLocalService localService = AppiumDriverLocalService.buildDefaultService(builder);
-			//AppiumDriverLocalService localService = AppiumDriverLocalService.buildService(builder);
+			AppiumDriverLocalService localService = AppiumDriverLocalService.buildService(builder);
 			//localService.start();
 			//localService.start();
-			
+
 			
 			//localService.stop();
 			
@@ -143,7 +143,7 @@ public final class AppiumClientTest extends BaseTest {
 			
 			//System.out.println(orientation.name() + ", " + orientation.ordinal());
 			// 休眠若干秒，等待APP准备就绪
-			Thread.sleep(1 * 1000);
+			TimeUnit.SECONDS.sleep(2);
 			//driver.close();
 			List<MobileElement> elements = null;
 			By by = null;
@@ -153,12 +153,14 @@ public final class AppiumClientTest extends BaseTest {
 			// 点击
 			element.click();
 			
+			TimeUnit.SECONDS.sleep(1);
 			// 点击 [登录]
 			by = By.xpath("//android.widget.Button[contains(@text,'登录')]");
 			element = driver.findElement(by);
 			// 点击
 			element.click();
 			
+			TimeUnit.SECONDS.sleep(2);
 			// 点击第一个元素，账号输入框
 			by = By.xpath("//android.widget.EditText");
 			elements = driver.findElements(by);
@@ -181,6 +183,84 @@ public final class AppiumClientTest extends BaseTest {
 			
 		} catch (Exception e) {
 			log.error("testLogin =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 退出登录
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testLogout() {
+		try {
+			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
+			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
+			//driver.getAppStringMap();
+			//Map<String, String> stringMap = driver.getAppStringMap(Locale.getDefault().getLanguage());
+			//Map<String, String> stringMap = driver.getAppStringMap();
+			//Set<String> keys = stringMap.keySet();
+			
+			//keys.forEach(x -> System.out.println(stringMap.get(x)));
+			
+			//ScreenOrientation orientation = driver.getOrientation();
+			
+			MobileElement element = null;
+			// 启动应用
+			//driver.launchApp();
+			//driver.findElementByClassName("cpt-choose-box cpt-choose-box-pop");
+			//element = driver.findElementByClassName("android.widget.ImageView");
+			//element = driver.findElementByXPath("//div[@class=' cpt-choose-box cpt-choose-box-pop']");
+			//System.out.println(element.getText());
+			//driver.getKeyboard().pressKey("A");
+			
+			
+			//driver.rotation();
+			
+			//System.out.println(orientation.name() + ", " + orientation.ordinal());
+			// 休眠若干秒，等待APP准备就绪
+			TimeUnit.SECONDS.sleep(1);
+			//driver.close();
+			List<MobileElement> elements = null;
+			By by = null;
+			//driver.closeApp();
+			
+			by = By.xpath("//android.widget.TextView[@text='我的']");
+			element = driver.findElement(by);
+			// 点击
+			element.click();
+			
+			// 点击头像
+			by = By.xpath("//android.widget.ImageView[@resource-id='ctrip.android.myctrip:id/ivAvatar']");
+			element = driver.findElement(by);
+			// 点击
+			element.click();
+			
+			TimeUnit.SECONDS.sleep(1);
+			// 点击退出登录
+			by = By.xpath("//android.widget.Button[@resource-id='ctrip.android.myctrip:id/myctrip_loginout_btn']");
+			element = driver.findElement(by);
+			// 点击
+			element.click();
+			
+			// 点击确认退出
+			by = By.xpath("//android.widget.TextView[@resource-id='ctrip.android.view:id/right_btn']");
+			element = driver.findElement(by);
+			element.click();	
+			
+			// 重置APP，清空缓存
+			//driver.resetApp();
+			// 
+			//driver.quit();
+			
+			
+			
+		} catch (Exception e) {
+			log.error("testLogout =====> ", e);
 		}
 	}
 	
@@ -221,7 +301,7 @@ public final class AppiumClientTest extends BaseTest {
 			
 			//System.out.println(orientation.name() + ", " + orientation.ordinal());
 			// 休眠若干秒，等待APP准备就绪
-			Thread.sleep(1 * 1000);
+			TimeUnit.SECONDS.sleep(1);
 			//driver.close();
 			List<MobileElement> elements = null;
 			//driver.closeApp();
@@ -458,56 +538,6 @@ public final class AppiumClientTest extends BaseTest {
 		} catch (Exception e) {
 			log.error("testAppiumClient2 =====> ", e);
 		}
-	}
-	
-	/**
-	 * 
-	 * @description 能力构建
-	 * @return
-	 * @author qianye.zheng
-	 */
-	public final DesiredCapabilities capabilities() {
-		// 期望的能力
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		// 自动化类型，默认是 appium
-		//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-		//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.APPIUM);
-		// 避免每次客户端启动 手机重复安装相关软件 (appium settings 和 目标app)
-		capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
-		// 移动浏览器，Safari' for iOS and 'Chrome', 'Chromium', or 'Browser' for Android
-		//capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
-		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
-		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-		//capabilities.setCapability(AndroidMobileCapabilityType.ANDROID_DEVICE_READY_TIMEOUT, "");
-		// adb执行 超时时间 (毫秒)
-		capabilities.setCapability("uiautomator2ServerInstallTimeout", 300 * 1000);
-		
-		//capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
-		// app 和 appPackage/appActivity 2者是等同的
-		//capabilities.setCapability(MobileCapabilityType.APP, "");
-		// 安卓平台特有的属性，待测试的app的java package
-		// 允许在该设备安装APP
-		capabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, false);
-		//capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ctrip.android.view");
-		// 安卓平台特有的属性，原生app要在前面加一个 "."
-		//capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ctrip.business.splash.CtripSplashActivity");
-		
-		// 不启动目标APP
-		capabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_PACKAGE, "ctrip.android.view");
-		// 安卓平台特有的属性，原生app要在前面加一个 "."
-		capabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_ACTIVITY, "ctrip.business.splash.CtripSplashActivity");
-		
-		
-		
-		// 无需再次签名
-		capabilities.setCapability(AndroidMobileCapabilityType.NO_SIGN, "true");
-		// 设备ID
-		//capabilities.setCapability(MobileCapabilityType.UDID, "");
-		
-		//capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-		capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 1200);
-		
-		return capabilities;
 	}
 	
 	/**
