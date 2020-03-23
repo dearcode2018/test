@@ -9,12 +9,14 @@ package com.hua.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.hua.log.BaseLog;
@@ -39,9 +41,37 @@ public class BaseTest extends BaseLog {
 
 	protected AppiumDriver<MobileElement> driver;
 	
+	protected String bundleId = "ctrip.android.view";
+	
+	protected static final String RESOURCE_ID = "resource-id";
+	
+	protected By by;
+	
+	protected MobileElement element;
+	
 	/**
 	 * 
-	 * @description 
+	 * @description 打开指定APP
+	 * @return
+	 * @author qianye.zheng
+	 */
+	protected final AppiumDriver<MobileElement> driverWithApp() {
+		URL serverUrl = null;
+		try
+		{
+			serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
+		} catch (MalformedURLException e)
+		{
+			e.printStackTrace();
+		}
+		AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
+		
+		return driver;
+	}
+	
+	/**
+	 * 
+	 * @description 不打开指定APP
 	 * @return
 	 * @author qianye.zheng
 	 */
@@ -54,7 +84,7 @@ public class BaseTest extends BaseLog {
 		{
 			e.printStackTrace();
 		}
-		AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+		AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(false));
 		
 		return driver;
 	}
@@ -62,10 +92,11 @@ public class BaseTest extends BaseLog {
 	/**
 	 * 
 	 * @description 能力构建
+	 * @param openApp 是否打开APP
 	 * @return
 	 * @author qianye.zheng
 	 */
-	protected final DesiredCapabilities capabilities() {
+	protected final DesiredCapabilities capabilities(final boolean openApp) {
 		// 期望的能力
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		// 自动化类型，默认是 appium
@@ -88,14 +119,15 @@ public class BaseTest extends BaseLog {
 		// 安卓平台特有的属性，待测试的app的java package
 		// 允许在该设备安装APP
 		capabilities.setCapability(AndroidMobileCapabilityType.AUTO_GRANT_PERMISSIONS, false);
-		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ctrip.android.view");
-		// 安卓平台特有的属性，原生app要在前面加一个 "."
-		capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ctrip.business.splash.CtripSplashActivity");
+		if (openApp) {
+			capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ctrip.android.view");
+			// 安卓平台特有的属性，原生app要在前面加一个 "."
+			capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ctrip.business.splash.CtripSplashActivity");
+		}
 		// 使用Unicode编码方式发送字符串
 		capabilities.setCapability(AndroidMobileCapabilityType.UNICODE_KEYBOARD, true);
 		// 是否隐藏系统键盘
 		capabilities.setCapability(AndroidMobileCapabilityType.RESET_KEYBOARD, false);
-		
 		
 		// 不启动目标APP
 		//capabilities.setCapability(AndroidMobileCapabilityType.APP_WAIT_PACKAGE, "ctrip.android.view");

@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * PerformTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import com.hua.test.BaseTest;
 
@@ -39,15 +40,32 @@ import com.hua.test.BaseTest;
  * 描述: 
  * 
  * @author qye.zheng
- * TemplateTest
+ * PerformTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class PerformTest extends BaseTest {
 
 	
-	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testPerform() {
+		try {
+
+			
+			//driver.perform
+			
+		} catch (Exception e) {
+			log.error("testPerform =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
@@ -144,7 +162,6 @@ public final class TemplateTest extends BaseTest {
 	@Tag(" [每个测试-方法]结束之后运行")
 	@BeforeEach
 	public void beforeMethod() {
-		driver = driver();
 		System.out.println("beforeMethod()");
 	}
 	

@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * AppImageTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -31,23 +31,114 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DriverCommand;
+import org.openqa.selenium.remote.Response;
+import org.springframework.util.Base64Utils;
 
 import com.hua.test.BaseTest;
+import com.hua.util.ClassPathUtil;
+import com.hua.util.FileUtil;
+import com.hua.util.ProjectUtil;
 
 
 /**
- * 描述: 
+ * 描述: 图片
  * 
  * @author qye.zheng
- * TemplateTest
+ * AppImageTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class AppImageTest extends BaseTest {
 
 	
+	/**
+	 * Base64编码转换
+	 * 
+	 * 
+	 * 
+	 */
 	
+	/**
+	 * 
+	 * 描述: 截屏
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testScreenshot() {
+		try {
+			// 返回base64的数据
+			//Response response = driver.execute(DriverCommand.SCREENSHOT);
+			// state: success, status = 0，表示截屏成功
+			//Object value = response.getValue();
+			String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
+			System.out.println(value);
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decodeFromString(value));
+			//System.out.println(response.getValue());
+			
+		} catch (Exception e) {
+			log.error("testScreenshot =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 截屏
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testToImage() {
+		try {
+			// 返回base64的数据
+			String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
+			System.out.println(value);
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decodeFromString(value));
+			//System.out.println(response.getValue());
+			
+		} catch (Exception e) {
+			log.error("testToImage =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testToBase64() {
+		try {
+			String path = ProjectUtil.getAbsolutePath("/doc/image.png");
+			System.out.println(Base64Utils.encodeToString(FileUtil.getByteArray(path)));
+			
+		} catch (Exception e) {
+			log.error("testToBase64 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testFindImage() {
+		try {
+			
+			
+		} catch (Exception e) {
+			log.error("testFindImage =====> ", e);
+		}
+	}
 	
 	/**
 	 * 

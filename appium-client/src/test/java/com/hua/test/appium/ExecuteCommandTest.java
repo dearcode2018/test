@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * ExecuteCommandTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,12 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
-
-
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,23 +29,59 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DriverCommand;
+import org.openqa.selenium.remote.Response;
 
 import com.hua.test.BaseTest;
 
 
 /**
- * 描述: 
+ * 描述: 执行指令
  * 
  * @author qye.zheng
- * TemplateTest
+ * ExecuteCommandTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class ExecuteCommandTest extends BaseTest {
 
 	
+	/**
+	 * 通用指令(浏览器):
+	 * org.openqa.selenium.remote.DriverCommand
+	 * 
+	 * 手机指令(参考): 
+	 * io.appium.java_client.MobileCommand
+	 */
 	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testExecuteCommand() {
+		try {
+			//element = driver.findElement(By.xpath("//android.widget.FrameLayout[@resource-id='ctrip.android.publicproduct:id/home_search_text']/android.widget.TextView"));
+			// 点击当前元素对象
+			//element.execute(DriverCommand.CLICK);
+			//element.execute(DriverCommand.CLICK_ELEMENT);
+			
+			//driver.execute(DriverCommand.GO_BACK);
+			//driver.execute(DriverCommand.QUIT);
+			
+			Response response = driver.execute(DriverCommand.SCREENSHOT);
+			// state: success, status = 0
+			System.out.println("state: " + response.getState()  + ", status = " + response.getStatus());
+			System.out.println(response.getValue());
+			
+		} catch (Exception e) {
+			log.error("testExecuteCommand =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
@@ -77,6 +111,7 @@ public final class TemplateTest extends BaseTest {
 	public void testTemp() {
 		try {
 			
+			driver.quit();
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);
@@ -145,6 +180,7 @@ public final class TemplateTest extends BaseTest {
 	@BeforeEach
 	public void beforeMethod() {
 		driver = driver();
+		//driver = driverWithApp();
 		System.out.println("beforeMethod()");
 	}
 	

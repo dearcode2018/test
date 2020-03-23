@@ -24,8 +24,6 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.time.Duration;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,7 +43,7 @@ import io.appium.java_client.MobileElement;
 
 
 /**
- * 描述: 
+ * 描述: APP 公共操作
  * 
  * @author qye.zheng
  * AppCommonTest
@@ -56,9 +54,6 @@ import io.appium.java_client.MobileElement;
 public final class AppCommonTest extends BaseTest {
 
 	
-	private String bundleId = "ctrip.android.view";
-	
-
 	
 	/**
 	 * 
@@ -102,7 +97,10 @@ public final class AppCommonTest extends BaseTest {
 	@Test
 	public void testCloseApp() {
 		try {
+			// 休眠若干秒，等待APP准备就绪
+			TimeUnit.SECONDS.sleep(2);
 			/*
+			 * 退出运行(包括前台和后台)
 			 * 关闭APP
 			 * 退出到APP桌面
 			 * 若app已处于关闭状态，不会抛异常
@@ -116,70 +114,6 @@ public final class AppCommonTest extends BaseTest {
 			
 		} catch (Exception e) {
 			log.error("testCloseApp =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 安装APP
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testInstallApp() {
-		try {
-			/*
-			 * 安装app
-			 * 提供本地路径
-			 */
-			String path = "D:/Program Files/leidian/LDPlayer/leidian/apk/weixin.apk";
-			
-			driver.installApp(path);
-			
-		} catch (Exception e) {
-			log.error("testInstallApp =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 卸载APP
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testUninstallApp() {
-		try {
-			/*
-			 * String bundleId; 要卸载的app的id，等于app的appPackage值
-			 */
-			//driver.removeApp("ctrip.android.view");
-			// 卸载微信
-			driver.removeApp("com.tencent.mm");
-			
-		} catch (Exception e) {
-			log.error("testUninstallApp =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
-	 * 描述: 检测是否已安装
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testCheckInstalled() {
-		try {
-			//bundleId = "abc";
-			// 等于app的appPackage值
-			System.out.println(driver.isAppInstalled(bundleId));
-			
-		} catch (Exception e) {
-			log.error("testCheckInstalled =====> ", e);
 		}
 	}
 	
@@ -230,7 +164,7 @@ public final class AppCommonTest extends BaseTest {
 				count = Integer.valueOf(matcher.group(1));
 			}
 			
-			for (int i = 0 ;i < count; i++) {
+			for (int i = 0; i < count; i++) {
 				// 允许
 				by = By.xpath("//android.widget.Button[@resource-id='com.android.packageinstaller:id/permission_allow_button']");
 				element = driver.findElement(by);
@@ -258,10 +192,94 @@ public final class AppCommonTest extends BaseTest {
 			 * Could not proxy command to remote server. Original error: 404 - ""
 			 * 
 			 */
-			System.out.println(driver.getTitle());
-			
+			//System.out.println(driver.getTitle());
+			//System.out.println(driver.getContext());
+			TimeUnit.SECONDS.sleep(3);
+			//System.out.println(driver.getPageSource());
+	
 		} catch (Exception e) {
 			log.error("testCheckOpened =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 收起键盘
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testHideKeyboard() {
+		try {
+			/*
+			 * getTitle() 不支持 该指令
+			 * Could not proxy command to remote server. Original error: 404 - ""
+			 * 
+			 */
+			//System.out.println(driver.getTitle());
+			//System.out.println(driver.getContext());
+			//TimeUnit.SECONDS.sleep(3);
+			//System.out.println(driver.getPageSource());
+			driver.hideKeyboard();
+			
+			
+			
+		} catch (Exception e) {
+			log.error("testHideKeyboard =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 是否是 原生页面 还是H5
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testIsBrowser() {
+		try {
+			/*
+			 * getTitle() 不支持 该指令
+			 * Could not proxy command to remote server. Original error: 404 - ""
+			 * 
+			 */
+			//System.out.println(driver.getTitle());
+			//System.out.println(driver.getContext());
+			TimeUnit.SECONDS.sleep(3);
+			//System.out.println(driver.getPageSource());
+			System.out.println(driver.isBrowser());
+			
+			
+		} catch (Exception e) {
+			log.error("testIsBrowser =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 获取页面源码，可以通过解析XML实现功能
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testGetPageSource() {
+		try {
+			/*
+			 * getTitle() 不支持 该指令
+			 * Could not proxy command to remote server. Original error: 404 - ""
+			 * 
+			 */
+			//System.out.println(driver.getTitle());
+			//System.out.println(driver.getContext());
+			TimeUnit.SECONDS.sleep(3);
+			// 获取当前页面源码
+			System.out.println(driver.getPageSource());
+			
+		} catch (Exception e) {
+			log.error("testGetPageSource =====> ", e);
 		}
 	}
 	
@@ -277,6 +295,7 @@ public final class AppCommonTest extends BaseTest {
 		try {
 			/*
 			 * 指定app后台运行的时间，到时间后，会切换回前台运行
+			 * 在特定场景下 能发挥作用
 			 */
 			driver.runAppInBackground(Duration.ofSeconds(5));
 			
@@ -295,7 +314,12 @@ public final class AppCommonTest extends BaseTest {
 	@Test
 	public void testQuit() {
 		try {
+			// 休眠若干秒，等待APP准备就绪
+			TimeUnit.SECONDS.sleep(2);
 			// 也是退出APP，和closeApp()方法相同
+			/*
+			 * 退出运行(包括前台和后台)
+			 */
 			driver.quit();
 			
 		} catch (Exception e) {
@@ -377,23 +401,6 @@ public final class AppCommonTest extends BaseTest {
 	
 	/**
 	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testActivateApp() {
-		try {
-			driver.activateApp(bundleId);
-			
-		} catch (Exception e) {
-			log.error("testActivateApp =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
 	 * 描述: 单击
 	 * @author qye.zheng
 	 * 
@@ -449,7 +456,6 @@ public final class AppCommonTest extends BaseTest {
 		}
 	}
 	
-	
 	/**
 	 * 
 	 * 描述: 键盘
@@ -472,24 +478,6 @@ public final class AppCommonTest extends BaseTest {
 	
 	/**
 	 * 
-	 * 描述: 屏幕旋转
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testRotation() {
-		try {
-			
-			driver.rotation();
-			
-		} catch (Exception e) {
-			log.error("testRotation =====> ", e);
-		}
-	}
-	
-	/**
-	 * 
 	 * 描述: 重启APP
 	 * @author qye.zheng
 	 * 
@@ -502,24 +490,6 @@ public final class AppCommonTest extends BaseTest {
 			
 		} catch (Exception e) {
 			log.error("testRebootApp =====> ", e);
-		}
-	}
-	
-	
-	/**
-	 * 
-	 * 描述: 重启机器
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void testRebootMachine() {
-		try {
-			
-			
-		} catch (Exception e) {
-			log.error("testRebootMachine =====> ", e);
 		}
 	}
 	
@@ -576,7 +546,6 @@ public final class AppCommonTest extends BaseTest {
 		}
 	}
 	
-	
 	/**
 	 * 
 	 * 描述: 
@@ -604,7 +573,11 @@ public final class AppCommonTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			
+			TimeUnit.SECONDS.sleep(3);
+			MobileElement element = null;
+			element = driver.findElementByXPath("//android.widget.TextView[@text='我的']");
+			// 点击
+			element.click();
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);

@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * RotationTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,12 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
-
-
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,23 +29,44 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.DeviceRotation;
+import org.openqa.selenium.ScreenOrientation;
 
 import com.hua.test.BaseTest;
 
 
 /**
- * 描述: 
+ * 描述: (屏幕/页面)旋转
  * 
  * @author qye.zheng
- * TemplateTest
+ * RotationTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class RotationTest extends BaseTest {
 
 	
-	
+	/**
+	 * 
+	 * 描述: 屏幕旋转
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testRotation() {	
+		try {
+			
+			DeviceRotation rotation = driver.rotation();
+			//  Set the orientation, but app refused to rotate
+			//driver.rotate(ScreenOrientation.LANDSCAPE);
+			driver.rotate(ScreenOrientation.PORTRAIT);
+			
+		} catch (Exception e) {
+			log.error("testRotation =====> ", e);
+		}
+	}
 	
 	/**
 	 * 

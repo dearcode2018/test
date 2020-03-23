@@ -51,7 +51,7 @@ import io.appium.java_client.touch.offset.PointOption;
 
 
 /**
- * 描述: 
+ * 描述: appium (Java)客户端
  * 
  * @author qye.zheng
  * AppiumClientTest
@@ -80,7 +80,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			//System.out.println(driver.getSessionId());
 			
@@ -90,7 +90,7 @@ public final class AppiumClientTest extends BaseTest {
 			// 设备时间
 			// System.out.println(driver.getDeviceTime());
 			AppiumServiceBuilder builder = new AppiumServiceBuilder();
-			builder.score(capabilities());
+			builder.score(capabilities(true));
 			AppiumDriverLocalService.buildService(builder);
 			// 
 			//AppiumDriverLocalService localService = AppiumDriverLocalService.buildDefaultService(builder);
@@ -118,7 +118,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			//driver.getAppStringMap();
 			//Map<String, String> stringMap = driver.getAppStringMap(Locale.getDefault().getLanguage());
@@ -198,7 +198,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			//driver.getAppStringMap();
 			//Map<String, String> stringMap = driver.getAppStringMap(Locale.getDefault().getLanguage());
@@ -276,7 +276,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			//driver.getAppStringMap();
 			//Map<String, String> stringMap = driver.getAppStringMap(Locale.getDefault().getLanguage());
@@ -362,7 +362,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			//driver.getAppStringMap();
 			//Map<String, String> stringMap = driver.getAppStringMap(Locale.getDefault().getLanguage());
@@ -416,7 +416,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 			// 会话ID，每次连接生成一个，22e4db34-2daa-4c06-9285-742058f87deb
 			
 			//localService.stop();
@@ -441,7 +441,7 @@ public final class AppiumClientTest extends BaseTest {
 		try {
 			//File app  = new File("C:\\Users\\dell\\AppData\\Local\\Temp\\ctripA.apk");
 			URL serverUrl = new URL("http://127.0.0.1:4723/wd/hub");
-			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities());
+			AppiumDriver<MobileElement> driver = new AppiumDriver<>(serverUrl, capabilities(true));
 				
 			// 
 			TouchAction<AndroidTouchAction> action = new TouchAction<>(driver);
@@ -490,7 +490,7 @@ public final class AppiumClientTest extends BaseTest {
 			
 			// 设备时间
 			// System.out.println(driver.getDeviceTime());
-			AppiumServiceBuilder builder = new AppiumServiceBuilder().withCapabilities(capabilities())
+			AppiumServiceBuilder builder = new AppiumServiceBuilder().withCapabilities(capabilities(true))
 					.withIPAddress("127.0.0.1").usingPort(4723);
 /*			builder.usingPort(4723);
 			builder.withIPAddress("127.0.0.1");

@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * ElementTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -18,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,23 +31,55 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 
 import com.hua.test.BaseTest;
 
 
 /**
- * 描述: 
+ * 描述: 元素
  * 
  * @author qye.zheng
- * TemplateTest
+ * ElementTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class ElementTest extends BaseTest {
 
 	
-	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testElementSomeAction() {
+		try {
+			element = driver.findElement(By.xpath("//android.widget.FrameLayout[@resource-id='ctrip.android.publicproduct:id/home_search_text']/android.widget.TextView"));
+			// 点击
+			element.click();
+			
+			TimeUnit.SECONDS.sleep(1);
+			element = driver.findElement(By.xpath("//android.widget.RelativeLayout[@resource-id='ctrip.android.search:id/inputLayout']/android.widget.EditText"));
+			element.sendKeys("广大高速2020");
+			
+			// toJson() 没有包含 有益的信息
+/*			Map<String, Object> map = element.toJson();
+			Set<String> keys = map.keySet();
+			for (String e : keys) {
+				System.out.println(e + ", " + map.get(e));
+			}*/
+			// 清空文本框 (INPUT/TEXTAREA)
+			//element.clear();
+			// 提交表单 H5页面中的表单
+			// element.submit();
+		} catch (Exception e) {
+			log.error("testElementSomeAction =====> ", e);
+		}
+	}
 	
 	/**
 	 * 

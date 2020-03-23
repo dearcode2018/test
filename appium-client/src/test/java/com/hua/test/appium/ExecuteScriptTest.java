@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * ExecuteScriptTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test.appium;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -36,15 +36,15 @@ import com.hua.test.BaseTest;
 
 
 /**
- * 描述: 
+ * 描述: 执行脚本/异步脚本
  * 
  * @author qye.zheng
- * TemplateTest
+ * ExecuteScriptTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class ExecuteScriptTest extends BaseTest {
 
 	
 	
@@ -144,7 +144,6 @@ public final class TemplateTest extends BaseTest {
 	@Tag(" [每个测试-方法]结束之后运行")
 	@BeforeEach
 	public void beforeMethod() {
-		driver = driver();
 		System.out.println("beforeMethod()");
 	}
 	
