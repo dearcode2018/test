@@ -9,7 +9,6 @@ package com.hua.bean;
 
 import java.sql.Timestamp;
 
-import com.hua.constant.ext.UserType;
 
 /**
  * 描述: 
@@ -31,8 +30,6 @@ public final class Person extends BaseBean {
 	/* 登录-密码 */
 	private String password;
 	
-	/* 用户类型 */
-	private UserType type;
 	
 	/* 用户状态 - 是否有效 默认 : 有效 */
 	private boolean valid = true;
@@ -72,20 +69,6 @@ public final class Person extends BaseBean {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/**
-	 * @return the type
-	 */
-	public UserType getType() {
-		return type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(UserType type) {
-		this.type = type;
 	}
 
 	/**

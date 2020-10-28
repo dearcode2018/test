@@ -24,13 +24,7 @@
 			<groupId>com.hua</groupId>
 			<artifactId>common</artifactId>
 			<version>${common.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.hua</groupId>
-			<artifactId>orm</artifactId>
-			<version>${orm.version}</version>
-		</dependency>		
+		</dependency>	
 
 		<!-- 测试 -->
 		

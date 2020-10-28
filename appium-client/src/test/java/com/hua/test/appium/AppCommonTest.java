@@ -35,11 +35,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 
 import com.hua.test.BaseTest;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 
 /**
@@ -54,6 +58,80 @@ import io.appium.java_client.MobileElement;
 public final class AppCommonTest extends BaseTest {
 
 	
+	/**
+	 * 
+	 * 描述: 屏幕上滑
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testSlideUp() {
+		try {
+			/*
+			 * longPress() 指定开始的位置，长按
+			 * moveTo() 指定目标位置，移动
+			 * 
+			 * x/y轴以左上角为原点
+			 * 上滑: y坐标终点比起点小
+			 * 
+			 * 下滑: y坐标终点比起点大
+			 * 
+			 * 注意: 页面上的起始坐标 要选择可以执行滑动的，有些位置是不能滑动的.
+			 * 
+			 */
+			//new TouchAction<>(driver).longPress(PointOption.point(360, 1000)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)));
+			
+			Dimension size = driver.manage().window().getSize();
+			int height = size.height;
+			int width = size.width;
+			System.out.println("height = " + height + ", width = " + width);
+			//new TouchAction<>(driver).longPress(PointOption.point(width / 2, height - 100)).moveTo(PointOption.point(height / 2, 100)).release().perform();
+			new TouchAction<>(driver).longPress(PointOption.point(width / 2, height - 100))
+			// 等待，避免加载缓慢
+			.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+			.moveTo(PointOption.point(width / 2, height - 300)).release().perform();
+		} catch (Exception e) {
+			log.error("testSlideUp =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 屏幕(手势)下滑
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testSlideDown() {
+		try {
+			/*
+			 * longPress() 指定开始的位置，长按
+			 * moveTo() 指定目标位置，移动
+			 * 
+			 * x/y轴以左上角为原点
+			 * 上滑: y坐标终点比起点小
+			 * 
+			 * 下滑: y坐标终点比起点大
+			 * 
+			 * 注意: 页面上的起始坐标 要选择可以执行滑动的，有些位置是不能滑动的.
+			 * 
+			 */
+			Dimension size = driver.manage().window().getSize();
+			int height = size.height;
+			int width = size.width;
+			System.out.println("height = " + height + ", width = " + width);
+			//new TouchAction<>(driver).longPress(PointOption.point(height / 2, 500)).moveTo(PointOption.point(width / 2, height - 100)).release().perform();
+			new TouchAction<>(driver).longPress(PointOption.point(width / 2, height - 300))
+			// 等待，避免加载缓慢
+			.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+			.moveTo(PointOption.point(width / 2, height - 100)).release().perform();
+			
+		} catch (Exception e) {
+			log.error("testSlideDown =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
@@ -540,9 +618,32 @@ public final class AppCommonTest extends BaseTest {
 			// 返回上一步
 			driver.navigate().back();
 			
-			
 		} catch (Exception e) {
 			log.error("testSearch =====> ", e);
+		}
+	}
+	
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testActivateApp() {
+		try {
+			System.out.println("AppCommonTest.testActivateApp()");
+			driver.activateApp(bundleId);
+			
+			//driver.launchApp();
+			
+			System.out.println("AppCommonTest.testActivateApp()");
+			driver.closeApp();
+			
+		} catch (Exception e) {
+			log.error("testActivateApp =====> ", e);
 		}
 	}
 	
@@ -646,6 +747,7 @@ public final class AppCommonTest extends BaseTest {
 	@BeforeEach
 	public void beforeMethod() {
 		driver = driver();
+		//driver = driverWithApp();
 		System.out.println("beforeMethod()");
 	}
 	

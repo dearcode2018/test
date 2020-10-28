@@ -39,14 +39,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.EnumSource.Mode;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.hua.annotation.CsvToResource;
 import com.hua.argument.MyArgumentProvider;
-import com.hua.constant.ext.UserType;
 import com.hua.convert.JsonArgumentConvert;
 import com.hua.entity.ResourceVo;
 import com.hua.entity.User;
@@ -233,24 +230,21 @@ public final class ParameterTest extends BaseTest {
 	 * 
 	 */
 	//@DisplayName("test")
-	@ParameterizedTest
+	//@ParameterizedTest
 	// 参数值源，name 指定可选的参数名，若不指定则使用所有参数，模式默认是包含
 	//@EnumSource(value = UserType.class)
 	//@EnumSource(value = UserType.class, names = {"SHOP_MANAGER", "GROUP"})
 	/*@EnumSource(value = UserType.class, mode = Mode.EXCLUDE, 
 	names = {"SHOP_MANAGER", "GROUP"})*/
 	// 使用正则表达式 MATCH_ALL或MATHCH_ANY
-	@EnumSource(value = UserType.class, mode = Mode.MATCH_ALL, 
-	names = {"^SHOP.*$"})
-	public void testEnumSource(UserType candicate) {
-		try {
-			
-			System.out.println(candicate.getRemark());
-			
-		} catch (Exception e) {
-			log.error("testEnumSource =====> ", e);
-		}
-	}
+	//@EnumSource(value = UserType.class, mode = Mode.MATCH_ALL, names = {"^SHOP.*$"})
+	/*
+	 * public void testEnumSource(UserType candicate) { try {
+	 * 
+	 * System.out.println(candicate.getRemark());
+	 * 
+	 * } catch (Exception e) { log.error("testEnumSource =====> ", e); } }
+	 */
 	
 	/**
 	 * 

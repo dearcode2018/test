@@ -497,9 +497,10 @@ public final class AppiumClientTest extends BaseTest {
 			builder.score(capabilities);*/
 			// 
 			AppiumDriverLocalService localService = builder.build();
+		
 			//localService.start();
 			//localService.start();
-			
+
 			
 			//localService.stop();
 			

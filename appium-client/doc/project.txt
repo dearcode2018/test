@@ -15,7 +15,8 @@
 
 2)
 
-3)
+3) appium server 启动
+appium --session-override
 
 4)
 

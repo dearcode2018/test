@@ -9,6 +9,8 @@ package com.hua.entity;
 
 import java.sql.Timestamp;
 
+import com.hua.constant.sys.UserType;
+
 /**
  * 描述: 
  * 

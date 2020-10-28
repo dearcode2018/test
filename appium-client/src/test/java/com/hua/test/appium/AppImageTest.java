@@ -18,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-
+import java.io.File;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.remote.DriverCommand;
 import org.openqa.selenium.remote.Response;
 import org.springframework.util.Base64Utils;
@@ -71,16 +72,90 @@ public final class AppImageTest extends BaseTest {
 	public void testScreenshot() {
 		try {
 			// 返回base64的数据
-			//Response response = driver.execute(DriverCommand.SCREENSHOT);
-			// state: success, status = 0，表示截屏成功
-			//Object value = response.getValue();
-			String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
-			System.out.println(value);
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decodeFromString(value));
-			//System.out.println(response.getValue());
+			Response response = driver.execute(DriverCommand.SCREENSHOT);
+			/*
+			 * state: success, status = 0，表示截屏成功
+			 * 
+			 * 注意，这里返回的字符串已经分段换行，需要将换行去掉，然后再解码
+			 */
 			
+			Object value = response.getValue();
+			//System.out.println(value.toString());
+			/*
+			 * 注意 不要直接调用 Base64Utils.decodeFromString()
+			 * 正确做法是调用 Base64Utils.decode(byte[])
+			 * nodtepad++ 工具替换的正则是: \r\n
+			 * 而java程序中用的正则是: \n
+			 * 注意这2者的区别.
+			 */
+			//System.out.println(value.toString().replaceAll("\n", ""));
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			//System.out.println(response.getValue());
 		} catch (Exception e) {
 			log.error("testScreenshot =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 截屏 方法2
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testScreenshot2() {
+		try {
+			//FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			//System.out.println(response.getValue());
+			// 截取当前屏幕
+			String value = driver.getScreenshotAs(OutputType.BASE64);
+			//System.out.println(value);
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+		} catch (Exception e) {
+			log.error("testScreenshot2 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 截屏 方法3
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testScreenshot3() {
+		try {
+			//FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			//System.out.println(response.getValue());
+			// 截取当前屏幕
+			byte[] value = driver.getScreenshotAs(OutputType.BYTES);
+			//System.out.println(value);
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), value);
+		} catch (Exception e) {
+			log.error("testScreenshot3 =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 截屏 方法4，获取到文件对象，直接操作该对象，
+	 * 不适用于保存文件的场景
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testScreenshot4() {
+		try {
+			//FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			//System.out.println(response.getValue());
+			// 截取当前屏幕
+			File value = driver.getScreenshotAs(OutputType.FILE);
+			//System.out.println(value);
+		} catch (Exception e) {
+			log.error("testScreenshot4 =====> ", e);
 		}
 	}
 	
@@ -95,9 +170,12 @@ public final class AppImageTest extends BaseTest {
 	public void testToImage() {
 		try {
 			// 返回base64的数据
-			String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
-			System.out.println(value);
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decodeFromString(value));
+			//String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
+			//System.out.println(value);
+			/**
+			 * decode 字节，不要用FileUtil.getString() 的方式，避免读取文本文件，存在文件结束符多余的问题.
+			 */
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(FileUtil.getByteArray(ClassPathUtil.getClassSubpath("/imageBase64.txt"))));
 			//System.out.println(response.getValue());
 			
 		} catch (Exception e) {

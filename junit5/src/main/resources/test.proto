@@ -1,0 +1,40 @@
+/* 指定语法版本 */
+syntax = "proto3";
+
+// 包名
+option java_package = "com.hua.test";
+
+// 源文件类名
+option java_outer_classname = "TestProtoBuf";
+
+/**
+
+*/
+message Test {
+	
+	/* ID */
+	optional int32 id = 1;
+	//required int32 id = 1;
+	
+	/* 姓名 */
+	optional string name = 2;
+	
+	/* 邮箱 */	
+	optional string email = 3;
+	
+	/* 性别 */	
+	optional Sex sex = 4;
+	
+	/* 备注 */	
+	optional string remark = 5;
+	
+	/*
+	性别
+	*/
+	enum Sex {
+		UNKNOW = 0;
+		MALE = 1;
+		FEMALE = 2;
+	}
+	
+}
