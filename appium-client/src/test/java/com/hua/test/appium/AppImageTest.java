@@ -89,7 +89,7 @@ public final class AppImageTest extends BaseTest {
 			 * 注意这2者的区别.
 			 */
 			//System.out.println(value.toString().replaceAll("\n", ""));
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()), true);
 			//System.out.println(response.getValue());
 		} catch (Exception e) {
 			log.error("testScreenshot =====> ", e);
@@ -111,7 +111,7 @@ public final class AppImageTest extends BaseTest {
 			// 截取当前屏幕
 			String value = driver.getScreenshotAs(OutputType.BASE64);
 			//System.out.println(value);
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()));
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(value.toString().replaceAll("\n", "").getBytes()), true);
 		} catch (Exception e) {
 			log.error("testScreenshot2 =====> ", e);
 		}
@@ -132,7 +132,7 @@ public final class AppImageTest extends BaseTest {
 			// 截取当前屏幕
 			byte[] value = driver.getScreenshotAs(OutputType.BYTES);
 			//System.out.println(value);
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), value);
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), value, true);
 		} catch (Exception e) {
 			log.error("testScreenshot3 =====> ", e);
 		}
@@ -170,12 +170,12 @@ public final class AppImageTest extends BaseTest {
 	public void testToImage() {
 		try {
 			// 返回base64的数据
-			//String value = FileUtil.getString(ClassPathUtil.getClassSubpath("/imageBase64.txt"));
+			//String value = FileUtil.getString(ClassPathUtil.getClassPath("/imageBase64.txt"));
 			//System.out.println(value);
 			/**
 			 * decode 字节，不要用FileUtil.getString() 的方式，避免读取文本文件，存在文件结束符多余的问题.
 			 */
-			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(FileUtil.getByteArray(ClassPathUtil.getClassSubpath("/imageBase64.txt"))));
+			FileUtil.writeByteArray(ProjectUtil.getAbsolutePath("/doc/image2.png"), Base64Utils.decode(FileUtil.getByteArray(ClassPathUtil.getClassPath("/imageBase64.txt"))), true);
 			//System.out.println(response.getValue());
 			
 		} catch (Exception e) {

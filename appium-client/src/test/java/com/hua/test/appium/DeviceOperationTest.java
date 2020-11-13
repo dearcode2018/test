@@ -270,7 +270,7 @@ public final class DeviceOperationTest extends BaseTest {
 			String path = "/storage/emulated/0/Pictures/Screenshots/Screenshot_20200323-114317.png";
 			byte[] data = driver.pullFile(path);
 			File file = new File(ProjectUtil.getAbsolutePath("/doc/image.png"));
-			FileUtil.writeByteArray(file, data);
+			FileUtil.writeByteArray(file, data, true);
 			
 		} catch (Exception e) {
 			log.error("testPullFile =====> ", e);
@@ -294,7 +294,7 @@ public final class DeviceOperationTest extends BaseTest {
 			byte[] data = driver.pullFolder(path);
 			// 存储为zip压缩文件
 			File file = new File(ProjectUtil.getAbsolutePath("/doc/accs.zip"));
-			FileUtil.writeByteArray(file, data);
+			FileUtil.writeByteArray(file, data, true);
 			
 		} catch (Exception e) {
 			log.error("testPullFolder =====> ", e);

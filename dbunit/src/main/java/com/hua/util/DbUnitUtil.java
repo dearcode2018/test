@@ -116,7 +116,7 @@ public final class DbUnitUtil
 			// 备份文件
 			// 临时文件，进程结束 自动删除
 			//final File file = File.createTempFile(ClassPathUtil.getClassSubpath("/conf/xml/")+ backupTable +"_back", ".xml");
-			backupFile = new File(ClassPathUtil.getClassSubpath("/conf/xml/") + backupTable +"_back.xml");
+			backupFile = new File(ClassPathUtil.getClassPath("/conf/xml/") + backupTable +"_back.xml");
 			
 			// 执行备份
 			FlatXmlDataSet.write(backupDataSet, new FileOutputStream(backupFile));

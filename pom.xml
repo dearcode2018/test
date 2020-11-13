@@ -16,7 +16,9 @@
 		<module>dbunit</module>		
 		<module>dbunit-spring</module>		
 		<module>dbunit2</module>		
-		<module>dbutils</module>		
+		<module>dbutils</module>
+		<module>mockito</module>
+		<module>mockito-spring-boot</module>		
 		<module>junit</module>	
 		<module>junit-spring</module>	
 		<module>junit5-spring</module>	

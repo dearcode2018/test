@@ -46,7 +46,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import com.hua.annotation.CsvToResource;
 import com.hua.argument.MyArgumentProvider;
-import com.hua.constant.ext.UserType;
+import com.hua.constant.sys.UserType;
 import com.hua.convert.JsonArgumentConvert;
 import com.hua.entity.ResourceVo;
 import com.hua.entity.User;
@@ -245,7 +245,7 @@ public final class ParameterTest extends BaseTest {
 	public void testEnumSource(UserType candicate) {
 		try {
 			
-			System.out.println(candicate.getRemark());
+			//System.out.println(candicate.getRemark());
 			
 		} catch (Exception e) {
 			log.error("testEnumSource =====> ", e);
