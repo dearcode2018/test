@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * MockitoTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -22,24 +22,8 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
-//静态导入，直接使用
-//import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.atMost;
-import static org.mockito.Mockito.atMostOnce;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,23 +31,47 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import com.hua.test.BaseTest;
-
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * TemplateTest
+ * MockitoTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class MockitoTest extends BaseTest {
 
 	
-	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	//@DisplayName("test")
+	@Test
+	public void testMockito() {
+		try {
+			List<Integer> mock = Mockito.mock(List.class);
+			mock.add(1);
+			
+			/*
+			 * 验证某个行为(方法以及参数)是否发生(调用)
+			 * 若没有发生，则测试结果将失败
+			 */
+			//Mockito.verify(mock).add(1);
+			//Mockito.verify(mock).add(2);
+			
+			mock.size();
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
@@ -160,8 +168,8 @@ public final class TemplateTest extends BaseTest {
 	@Tag(" [每个测试-方法]结束之后运行")
 	@BeforeEach
 	public void beforeMethod() {
-		// 打开测试对象的Mock，使用@Mock标注的时候去掉注释
-		//MockitoAnnotations.openMocks(this);
+		// 打开测试对象的Mock
+		MockitoAnnotations.openMocks(this);
 		System.out.println("beforeMethod()");
 	}
 	
@@ -237,24 +245,6 @@ public final class TemplateTest extends BaseTest {
 		assumeFalse(false);
 		assumeTrue(true);
 		assumingThat(true, null);
-		
-		/* Mockito 静态引入 */
-		atLeast(0);
-		atLeastOnce();
-		atMost(0);
-		atMostOnce();
-		when(null);
-		doThrow(Throwable.class);
-		inOrder(actuals);
-		mock(null);
-		never();
-		times(0);
-		timeout(0);
-		only();
-		reset(actuals);
-		verify(null).toString();
-		verifyNoInteractions(actuals);
-		verifyNoMoreInteractions(actuals);
 	}
 
 }

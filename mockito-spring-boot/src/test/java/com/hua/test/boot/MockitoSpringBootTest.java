@@ -19,9 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+import static org.mockito.Mockito.when;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import javax.annotation.Resource;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -36,7 +38,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.hua.ApplicationStarter;
-import com.hua.service.SomeService;
+import com.hua.service.IBusinessDao;
+import com.hua.service.impl.WorkerImpl;
+import com.hua.test.BaseTest;
 
 
 /**
@@ -54,10 +58,8 @@ import com.hua.service.SomeService;
 @SpringBootTest(classes = {ApplicationStarter.class}, 
 webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 //@MapperScan(basePackages = {"com.hua.mapper"})
-public final class MockitoSpringBootTest {
+public final class MockitoSpringBootTest extends BaseTest {
 
-	protected final Logger log = LogManager.getLogger(this.getClass().getName());
-	
 	/*
 	配置方式1: 
 	@WebAppConfiguration(value = "src/main/webapp")  
@@ -94,9 +96,19 @@ public final class MockitoSpringBootTest {
 	 * 将目标项目的配置复制到当前项目同一路径下
 	 * 
 	 */
-	//@InjectMocks
 	@Mock
-	private SomeService someService;
+	private IBusinessDao iBusinessDao;
+	
+	/*
+	 * 加上@Resource的原因是避免WorkerImpl
+	 * 有些注入的属性 没有来自 Mock 而是来自IOC容器
+	 * 
+	 * 	@Resource 注入IOC容器中的对象
+	    @InjectMocks 注入	@Mock 标注的对象
+	 */
+	@Resource
+	@InjectMocks
+	private WorkerImpl workerImpl;
 	
 	/**
 	 * 
@@ -106,10 +118,14 @@ public final class MockitoSpringBootTest {
 	 */
 	//@DisplayName("test")
 	@Test
-	public void testMockito() {
+	public void testMockitoSpringboot() {
 		try {
-			Mockito.when(someService.getValue(Mockito.anyString())).thenReturn(200);
-			
+			//Mockito.when(someService.getValue(Mockito.anyString())).thenReturn(200);
+			// 若没有此定义，则方法将返回类型默认值
+			when(iBusinessDao.doSomeThing()).then(x-> {// 相对复杂的返回逻辑，简单的直接用thenReturn
+				return 2;
+			});
+			workerImpl.notParamRetVoid();
 		} catch (Exception e) {
 			log.error("test =====> ", e);
 		}

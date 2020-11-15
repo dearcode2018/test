@@ -12,6 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.mockito.MockitoAnnotations;
 
 import com.hua.log.BaseLog;
 
@@ -61,6 +62,8 @@ public class BaseTest extends BaseLog {
 	@DisplayName("beforeMethod")
 	@BeforeEach
 	public void beforeMethod() {
+		// 打开测试对象的Mock
+		//MockitoAnnotations.openMocks(this);
 		System.out.println("beforeMethod()");
 	}
 	

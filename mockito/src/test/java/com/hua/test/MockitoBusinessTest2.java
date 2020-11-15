@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * TemplateTest.java
+ * MockitoBusinessTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package template.code;
+package com.hua.test;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 //静态导入，直接使用
-//import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.atMost;
@@ -47,23 +46,127 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import com.hua.test.BaseTest;
+import com.hua.service.IWorker;
+import com.hua.service.impl.WorkerImpl;
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * TemplateTest
+ * MockitoBusinessTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class TemplateTest extends BaseTest {
+public final class MockitoBusinessTest2 extends BaseTest {
 
+	@Mock
+	private IWorker iWorker;
 	
+	/* 实际对象，可通过其他方式构造或注入 */
+	// 使用了被Mock对象的类
+	//@InjectMocks
+	private IWorker workerImpl;
 	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testMockInterface() {
+		try {
+			when(iWorker.notParamRetString()).thenReturn("notParamRetString");
+			//verify(iWorker).notParamRetString();
+			/*
+			 * Mock 之后的返回值和实际业务对象的返回值
+			 * 进行对比，是否一致
+			 */
+			String expect = iWorker.notParamRetString();
+			String actual = workerImpl.notParamRetString();
+			
+			assertEquals(expect, actual);
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testVerifyCall() {
+		try {
+		
+			
+			
+			
+			//when(iWorker.notParamRetString()).thenReturn("notParamRetString");
+			//verify(iWorker).notParamRetString();
+			/*
+			 * Mock 之后的返回值和实际业务对象的返回值
+			 * 进行对比，是否一致
+			 */
+			//String expect = iWorker.notParamRetString();
+			//String actual = workerImpl.notParamRetString();
+			
+			//assertEquals(expect, actual);
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testCheckParamAndReturn() {
+		try {
+			when(iWorker.retDouble("123", 1.5, 10)).thenReturn(15.0);
+			double expect = iWorker.retDouble("123", 1.5, 10);
+			double actual = workerImpl.retDouble("123", 1.5, 10);
+			
+			assertEquals(expect, actual);
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
+	
+	/**
+	 * 
+	 * 描述: 执行超时
+	 * @author qye.zheng
+	 * 
+	 */
+	//@DisplayName("test")
+	@Test
+	public void testTimeout() {
+		try {
+			//workerImpl.notParamRetVoid();
+			iWorker.notParamRetVoid();
+			verify(iWorker, timeout(2000)).notParamRetVoid();
+			
+		} catch (Exception e) {
+			log.error("test =====> ", e);
+		}
+	}
 	
 	/**
 	 * 
@@ -92,7 +195,7 @@ public final class TemplateTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			
+			verify(iWorker).notParamRetVoid();
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);
@@ -161,7 +264,7 @@ public final class TemplateTest extends BaseTest {
 	@BeforeEach
 	public void beforeMethod() {
 		// 打开测试对象的Mock，使用@Mock标注的时候去掉注释
-		//MockitoAnnotations.openMocks(this);
+		MockitoAnnotations.openMocks(this);
 		System.out.println("beforeMethod()");
 	}
 	
@@ -247,11 +350,11 @@ public final class TemplateTest extends BaseTest {
 		doThrow(Throwable.class);
 		inOrder(actuals);
 		mock(null);
+		only();
+		reset(actuals);
 		never();
 		times(0);
 		timeout(0);
-		only();
-		reset(actuals);
 		verify(null).toString();
 		verifyNoInteractions(actuals);
 		verifyNoMoreInteractions(actuals);
