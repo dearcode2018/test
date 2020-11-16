@@ -1,36 +1,40 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hua</groupId>
-  <artifactId>test-entire</artifactId>
-  <version>0.0.1</version>
-  <packaging>pom</packaging>
-  <name>test-entire</name>
-  <description>test Maven Entire Project</description>
-  
-  	<!-- 模块-子项目 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.hua</groupId>
+	<artifactId>test-entire</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+	<name>test-entire</name>
+	<description>test Maven Entire Project</description>
+
+	<!-- 模块-子项目 -->
 	<modules>
 		<!-- 模板 -->
-		<module>test-template</module>		
+		<module>test-template</module>
 		<module>appium-client</module>
-		<module>ant-unit</module>		
-		<module>dbunit</module>		
-		<module>dbunit-spring</module>		
-		<module>dbunit2</module>		
+		<module>ant-unit</module>
+		<module>dbunit</module>
+		<module>dbunit-spring</module>
+		<module>dbunit2</module>
 		<module>dbutils</module>
 		<module>mockito</module>
-		<module>mockito-spring-boot</module>		
-		<module>junit</module>	
-		<module>junit-spring</module>	
-		<module>junit5-spring</module>	
-		<module>junit4</module>		
+		<module>mockito-spring-boot</module>
+		<module>junit</module>
+		<module>junit-spring</module>
+		<module>junit5-spring</module>
+		<module>junit4</module>
 		<module>junit5</module>
-		<module>test</module>		
-		<module>unitils</module>		
-		<module>unitils-dbunit</module>		
-		<module>unitils-spring</module>		
-		<module>unitils3</module>	
+		<module>jmockit</module>
+		<module>jmockit-spring-boot</module>
+		<module>test</module>
+		<module>unitils</module>
+		<module>unitils-dbunit</module>
+		<module>unitils-spring</module>
+		<module>unitils3</module>
 	</modules>
- 
+
 	<!-- 公共属性 -->
 	<properties>
 		<jdk.version>1.8</jdk.version>
@@ -43,13 +47,17 @@
 		<maven.plugin.resources.version>2.7</maven.plugin.resources.version>
 		<maven.plugin.dependency.version>2.10</maven.plugin.dependency.version>
 		<maven.plugin.war.version>3.0</maven.plugin.war.version>
-		<spring.version>5.1.2.RELEASE</spring.version>	
+		<spring.version>5.1.2.RELEASE</spring.version>
 		<common.version>0.0.1</common.version>
-		<web.version>0.0.1</web.version>		
-	</properties>  
-  
-  
- 	<!-- 公共构建 -->
+		<web.version>0.0.1</web.version>
+		<junit.version>5.3.1</junit.version>
+		<junit.platform.version>1.3.1</junit.platform.version>
+		<!-- 1.49 需要手工增加VM参数(例如) -javaagent:C:/repository/org/jmockit/jmockit/1.49/jmockit-1.49.jar -->
+		<jmockit.version>1.41</jmockit.version>
+	</properties>
+
+
+	<!-- 公共构建 -->
 	<build>
 		<plugins>
 
@@ -149,5 +157,97 @@
 
 		</plugins>
 	</build>
-	
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<!-- 参数化 -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-params</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>${junit.platform.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-engine</artifactId>
+				<version>${junit.platform.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-runner</artifactId>
+				<version>${junit.platform.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${jmockit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
 </project>

@@ -14,7 +14,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<com.hua.junit.version>0.0.1</com.hua.junit.version>
-		<junit.version>4.12</junit.version>
 	</properties>
 
 	<dependencies>
@@ -23,12 +22,6 @@
 			<artifactId>junit</artifactId>
 			<version>${com.hua.junit.version}</version>
 		</dependency>
-
-	<dependency>
-	    <groupId>junit</groupId>
-	    <artifactId>junit</artifactId>
-	    <version>${junit.version}</version>
-	</dependency>
 		
 	</dependencies>
 

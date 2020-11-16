@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 
 /**
@@ -401,7 +400,9 @@ public final class MockitoBasicTest extends BaseTest {
 	@Test
 	public void testTemp() {
 		try {
-			
+            String str = Mockito.mock(String.class);
+            Mockito.when(str.length()).thenReturn(10);
+            System.out.println(str.length());
 			
 		} catch (Exception e) {
 			log.error("testTemp=====> ", e);
@@ -465,7 +466,8 @@ public final class MockitoBasicTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@DisplayName("beforeMethod")
+	@Override
+    @DisplayName("beforeMethod")
 	@Tag(" [每个测试-方法]结束之后运行")
 	@BeforeEach
 	public void beforeMethod() {
@@ -480,7 +482,8 @@ public final class MockitoBasicTest extends BaseTest {
 	 * @author qye.zheng
 	 * 
 	 */
-	@DisplayName("afterMethod")
+	@Override
+    @DisplayName("afterMethod")
 	@Tag(" [每个测试-方法]结束之后运行")
 	@AfterEach
 	public void afterMethod() {

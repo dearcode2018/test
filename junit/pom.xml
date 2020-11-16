@@ -12,9 +12,7 @@
 	<name>junit</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
 		<test.version>0.0.1</test.version>
-		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencies>
