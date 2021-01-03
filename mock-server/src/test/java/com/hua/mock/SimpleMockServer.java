@@ -25,7 +25,7 @@ import java.nio.charset.StandardCharsets;
 public final class SimpleMockServer {
     
     private  static final int port = 7070;
-    
+    	
     /**
      * @description 
      * @param args
@@ -39,7 +39,7 @@ public final class SimpleMockServer {
                 StandardCharsets.UTF_8));
         
         server.when(request().withMethod("POST").withPath("/mock/post/info")
-                .withBody("{\"id\": 1}"))
+                .withBody("{\"id\":1}"))
         .respond(response().withBody(FileUtil.getString(ClassPathUtil.getClassPath("/demo.json")), 
                 StandardCharsets.UTF_8));
         
