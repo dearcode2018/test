@@ -1,11 +1,11 @@
 /**
  * 描述: 
- * FileUtilTest.java
+ * TemplateTest.java
  * 
  * @author qye.zheng
  *  version 1.0
  */
-package com.hua.test.thing;
+package template.code;
 
 //静态导入
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -19,8 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
-import java.io.File;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,44 +33,21 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.hua.test.BaseTest;
-import com.hua.util.FileUtil;
-
-import lombok.Builder;
-import lombok.Data;
 
 
 /**
  * 描述: 
  * 
  * @author qye.zheng
- * FileUtilTest
+ * TemplateTest
  */
 //@DisplayName("测试类名称")
 //@Tag("测试类标签")
 //@Tags({@Tag("测试类标签1"), @Tag("测试类标签2")})
-public final class FileUtilTest extends BaseTest {
+public final class TemplateTest extends BaseTest {
 
 	
-	/**
-	 * 
-	 * 描述: 
-	 * @author qye.zheng
-	 * 
-	 */
-	//@DisplayName("test")
-	@Test
-	public void printFileContent() {
-		try {
-			String path = "D:/a";
-			File dir = new File(path);
-			File[] files = dir.listFiles();
-			for (File file : files) {
-				System.out.println(FileUtil.getString(file));
-			}
-		} catch (Exception e) {
-			log.error("printFileContent =====> ", e);
-		}
-	}
+	
 	
 	/**
 	 * 
@@ -236,13 +216,9 @@ public final class FileUtilTest extends BaseTest {
 		
 		dynamicTest(null, null);
 		
+		assumeFalse(false);
+		assumeTrue(true);
+		assumingThat(true, null);
 	}
 
-	
-	
-	@Data
-	@Builder
-	public static class Some {
-	    private String value;
-	}
 }

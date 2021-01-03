@@ -14,7 +14,6 @@
 	
 	<properties>
 		<test.version>0.0.1</test.version>	
-		<mockito.version>3.6.0</mockito.version>		
 	</properties>
 
 	<!-- 使用spring boot 构建插件 运行: mvn spring-boot:run -->
@@ -103,7 +102,6 @@
 		<dependency>
 		    <groupId>org.mockito</groupId>
 		    <artifactId>mockito-core</artifactId>
-		    <version>${mockito.version}</version>
 		    <scope>test</scope>
 		</dependency>
 		
