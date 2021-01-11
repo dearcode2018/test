@@ -8,52 +8,21 @@
 		<artifactId>test-entire</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>junit4</artifactId>
+	<artifactId>powermock</artifactId>
 	<packaging>jar</packaging>
-	<name>junit4</name>
+	<name>powermock</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<com.hua.junit.version>0.0.1</com.hua.junit.version>
+		<test.version>0.0.1</test.version>
+
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>junit</artifactId>
-			<version>${com.hua.junit.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.jupiter</groupId>
-					<artifactId>junit-jupiter-engine</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>org.junit.platform</groupId>
-					<artifactId>junit-platform-launcher</artifactId>
-				</exclusion>
-
-				<!-- 参数化 -->
-				<exclusion>
-					<groupId>org.junit.jupiter</groupId>
-					<artifactId>junit-jupiter-params</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>org.junit.platform</groupId>
-					<artifactId>junit-platform-runner</artifactId>
-				</exclusion>
-
-				<exclusion>
-					<groupId>org.junit.platform</groupId>
-					<artifactId>junit-platform-engine</artifactId>
-				</exclusion>
-			</exclusions>
+			<artifactId>test</artifactId>
+			<version>${test.version}</version>
 		</dependency>
 
 		<dependency>
@@ -67,12 +36,12 @@
 			</exclusions>
 			<scope>test</scope>
 		</dependency>
-
+<!-- 
 		<dependency>
 			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
+			<artifactId>powermock-module-junit5</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.mockito</groupId>
