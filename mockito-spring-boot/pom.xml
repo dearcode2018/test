@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 	
 	<properties>
-		<test.version>0.0.1</test.version>	
+		<test.version>1.0.0</test.version>	
   		<mockito.version>3.6.0</mockito.version>		
 	</properties>
 
@@ -35,15 +35,9 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>test</artifactId>
+			<artifactId>test-core</artifactId>
 			<version>${test.version}</version>
-		</dependency>		
-	
-<!-- 		<dependency>
-			<groupId>com.hua</groupId>
-			<artifactId>web</artifactId>
-			<version>${web.version}</version>
-		</dependency> -->
+		</dependency>
 		
 		<!-- spring boot starter web -->
 		<dependency>

@@ -5,23 +5,18 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>test-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>dbunit-spring</artifactId>
 	<packaging>jar</packaging>
 	<name>dbunit-spring</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<dbunit.version>0.0.1</dbunit.version>
-
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>dbunit</artifactId>
-			<version>${dbunit.version}</version>
 		</dependency>
 
 		

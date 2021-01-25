@@ -5,23 +5,19 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>test-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
-	<artifactId>test</artifactId>
+	<artifactId>test-core</artifactId>
 	<packaging>jar</packaging>
-	<name>test</name>
+	<name>test-core</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<common.version>0.0.1</common.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>common</artifactId>
-			<version>${common.version}</version>
 		</dependency>	
-
 		<!-- 测试 -->
 		
 	</dependencies>

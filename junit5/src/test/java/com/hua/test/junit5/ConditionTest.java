@@ -259,7 +259,7 @@ public final class ConditionTest extends BaseTest {
 	 * 
 	 */
 	//@DisplayName("test")
-	@EnabledIf(value = {"2 * 3 == 6"})
+	//@EnabledIf(value = {"2 * 3 == 6"})
 	@Test
 	public void testEnabledIf() {
 		try {
@@ -277,7 +277,7 @@ public final class ConditionTest extends BaseTest {
 	 * 
 	 */
 	//@DisplayName("test")
-	@EnabledIf(value = {" 'CI' == systemEnvironment.get('ENV')"})
+	//@EnabledIf(value = {" 'CI' == systemEnvironment.get('ENV')"})
 	@Test
 	public void testEnabledIf2() {
 		try {
@@ -298,7 +298,7 @@ public final class ConditionTest extends BaseTest {
 	// 不成立的时候执行
 	//@DisabledIf(value = {"2 * 4 == 6"})
 	// 成立则不执行
-	@DisabledIf(value = {"2 * 4 == 8"})
+	//@DisabledIf(value = {"2 * 4 == 8"})
 	@Test
 	public void testDisabledIf() {
 		try {

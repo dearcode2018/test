@@ -5,14 +5,13 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>test-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>junit-spring</artifactId>
 	<packaging>jar</packaging>
 	<name>junit-spring</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.hua.junit.version>0.0.1</com.hua.junit.version>
+
 	</properties>
 
 	<dependencies>
@@ -20,7 +19,6 @@
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>junit</artifactId>
-			<version>${com.hua.junit.version}</version>
 		</dependency>
 
 			<!-- spring -->

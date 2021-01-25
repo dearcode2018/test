@@ -5,23 +5,18 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>test-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>mock-server</artifactId>
 	<packaging>jar</packaging>
 	<name>mock-server</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-		<test.version>0.0.1</test.version>
-
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.hua</groupId>
-			<artifactId>test</artifactId>
-			<version>${test.version}</version>
+			<artifactId>test-core</artifactId>
 		</dependency>
 
 		<dependency>

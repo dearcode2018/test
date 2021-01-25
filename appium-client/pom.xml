@@ -5,15 +5,14 @@
 	<parent>
 		<groupId>com.hua</groupId>
 		<artifactId>test-entire</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 	</parent>	
 	<artifactId>appium-client</artifactId>
 	<packaging>jar</packaging>
 	<name>appium-client</name>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<junit5.test.version>0.0.1</junit5.test.version>
+		<com.hua.junit5.test.version>1.0.0</com.hua.junit5.test.version>
 		<appium.clent.version>a873737fce</appium.clent.version>
 	</properties>
 
@@ -21,13 +20,11 @@
 		<dependency>
 			<groupId>com.hua</groupId>
 			<artifactId>junit5</artifactId>
-			<version>${junit5.test.version}</version>
 		</dependency>
 
 		<dependency>
 		    <groupId>com.github.appium</groupId>
 		    <artifactId>java-client</artifactId>
-		    <version>${appium.clent.version}</version>
 		    <exclusions>
 		    	<exclusion>
 			    <groupId>org.slf4j</groupId>
